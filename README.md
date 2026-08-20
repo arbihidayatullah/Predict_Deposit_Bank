@@ -1,68 +1,312 @@
-Predict Deposit Bank
+# 🏦 Predict Bank Term Deposit
 
-This project aims to predict whether a bank client will subscribe to a term deposit based on telemarketing data. Using machine learning, the model helps financial institutions optimize marketing strategies, reduce costs, and increase deposit subscriptions.
+<p align="center">
+  <strong>Machine Learning for Predicting Customer Term Deposit Subscription</strong>
+</p>
 
-📊 Dataset
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-Data%20Science-blue?style=flat-square&logo=python" />
+  <img src="https://img.shields.io/badge/Scikit--Learn-Machine%20Learning-orange?style=flat-square&logo=scikitlearn" />
+  <img src="https://img.shields.io/badge/Random%20Forest-Best%20Model-success?style=flat-square" />
+</p>
 
-Source: Portuguese Bank Marketing Dataset (Kaggle)
+<br>
 
-Rows: 45,211
+> **Can we identify which bank customers are most likely to subscribe to a term deposit?**
 
-Features: 16 input features + 1 target label
+This project applies **Machine Learning** to predict whether a bank client will subscribe to a term deposit based on Portuguese bank telemarketing data.
 
-Target: y → whether the client subscribes to a deposit (yes/no)
+The objective is to help financial institutions focus marketing efforts on high-potential customers, improve campaign efficiency, and reduce unnecessary outreach.
 
-Key features include: age, job, marital status, education, balance, loan, housing, contact type, campaign, previous outcome, duration, and more
-.
+---
 
-🎯 Business Purpose
+<!-- ========================================= -->
 
-Identify potential clients → determine which customers are more likely to subscribe to a term deposit.
+<!--               PROJECT OVERVIEW             -->
 
-Increase marketing efficiency → reduce costs by focusing on high-probability clients.
+<!-- ========================================= -->
 
-Boost bank revenue → by improving term deposit conversion rates
-.
+## 🎯 Project Overview
 
-⚙️ Preprocessing
+Traditional marketing campaigns often contact a large number of customers without knowing who is genuinely interested.
 
-Missing value check
+This project transforms historical customer and campaign data into a predictive model capable of estimating the likelihood that a client will subscribe to a **term deposit**.
 
-Feature encoding (job, marital, education, contact, month, etc.)
+### The Prediction Task
 
-Feature selection using ANOVA & Mutual Information
+```text
+                    BANK CUSTOMER DATA
+                           │
+                           ▼
+                ┌─────────────────────┐
+                │   DATA PROCESSING   │
+                └──────────┬──────────┘
+                           │
+                           ▼
+                ┌─────────────────────┐
+                │  FEATURE SELECTION  │
+                └──────────┬──────────┘
+                           │
+                           ▼
+                ┌─────────────────────┐
+                │ MACHINE LEARNING    │
+                │                     │
+                │ Logistic Regression │
+                │ Decision Tree       │
+                │ Random Forest       │
+                └──────────┬──────────┘
+                           │
+                           ▼
+                   PREDICTION
+                           │
+              ┌────────────┴────────────┐
+              ▼                         ▼
+         SUBSCRIBE                  NOT SUBSCRIBE
+```
 
-Handling imbalanced data (resampling)
+---
 
-🤖 Models
+<!-- ========================================= -->
 
-Several models were evaluated:
+<!--                   DATASET                  -->
 
-Model	Accuracy	Precision	Recall	F1-Score
-Logistic Regression	0.7748	0.76–0.79	0.76–0.79	0.78
-Decision Tree	0.8841	0.87–0.90	0.87–0.90	0.88
-Random Forest	0.9235	0.89–0.95	0.89–0.95	0.92
+<!-- ========================================= -->
 
-After hyperparameter tuning, Random Forest remained the best-performing model with ~92% accuracy.
+## 📊 Dataset
 
-🔑 Feature Importance
+The project uses the **Portuguese Bank Marketing Dataset**.
 
-Important features influencing predictions include:
+| Information       | Details              |
+| ----------------- | -------------------- |
+| 📁 Dataset        | Bank Marketing       |
+| 📊 Records        | **45,211**           |
+| 🔢 Input Features | **16**               |
+| 🎯 Target         | `y`                  |
+| 📌 Prediction     | Deposit Subscription |
 
-Duration of the last contact
+The target variable:
 
-Pdays (days since last contact)
+```text
+y = yes → Client subscribes to a term deposit
+y = no  → Client does not subscribe
+```
 
-Poutcome (outcome of previous campaign)
+### 🔍 Example Features
 
-Balance
+The dataset contains customer, financial, and campaign-related attributes:
 
-Contact type (cellular/telephone)
+```text
+👤 Customer Profile
+├── Age
+├── Job
+├── Marital Status
+└── Education
 
-🚀 Deployment
+💰 Financial Information
+├── Balance
+├── Housing Loan
+└── Personal Loan
 
-The model is deployed to predict new client data. Example input features:
+📞 Marketing Campaign
+├── Contact Type
+├── Duration
+├── Campaign
+├── Pdays
+└── Previous Outcome
+```
 
+---
+
+<!-- ========================================= -->
+
+<!--                BUSINESS VALUE              -->
+
+<!-- ========================================= -->
+
+## 💼 Business Value
+
+The model can support a more targeted marketing strategy.
+
+### 🎯 Identify Potential Customers
+
+Focus on customers with a higher probability of subscribing.
+
+### 💰 Reduce Marketing Costs
+
+Avoid spending resources on low-probability prospects.
+
+### 📈 Improve Conversion Potential
+
+Use historical data to support more informed campaign decisions.
+
+---
+
+<!-- ========================================= -->
+
+<!--                  WORKFLOW                  -->
+
+<!-- ========================================= -->
+
+## ⚙️ Machine Learning Workflow
+
+```text
+Raw Bank Marketing Data
+          │
+          ▼
+┌─────────────────────────┐
+│   Data Understanding    │
+└────────────┬────────────┘
+             ▼
+┌─────────────────────────┐
+│   Data Preprocessing    │
+│                         │
+│ • Missing Value Check   │
+│ • Feature Encoding      │
+│ • Data Preparation      │
+└────────────┬────────────┘
+             ▼
+┌─────────────────────────┐
+│   Feature Selection     │
+│                         │
+│ • ANOVA                 │
+│ • Mutual Information    │
+└────────────┬────────────┘
+             ▼
+┌─────────────────────────┐
+│ Imbalanced Data Handling│
+│       Resampling        │
+└────────────┬────────────┘
+             ▼
+┌─────────────────────────┐
+│   Model Development     │
+│                         │
+│ Logistic Regression     │
+│ Decision Tree           │
+│ Random Forest           │
+└────────────┬────────────┘
+             ▼
+┌─────────────────────────┐
+│   Model Evaluation      │
+│                         │
+│ Accuracy                │
+│ Precision               │
+│ Recall                  │
+│ F1-Score                │
+└────────────┬────────────┘
+             ▼
+       Final Prediction
+```
+
+---
+
+<!-- ========================================= -->
+
+<!--                 PREPROCESSING              -->
+
+<!-- ========================================= -->
+
+## 🧹 Data Preprocessing
+
+Several preprocessing steps were performed before training the models:
+
+* 🔎 Missing value inspection
+* 🔄 Categorical feature encoding
+* 🎯 Feature selection using **ANOVA**
+* 📊 Feature selection using **Mutual Information**
+* ⚖️ Imbalanced data handling using resampling
+
+The goal was to prepare a more meaningful feature set for the classification models.
+
+---
+
+<!-- ========================================= -->
+
+<!--                MODEL COMPARISON            -->
+
+<!-- ========================================= -->
+
+## 🤖 Model Comparison
+
+Three Machine Learning algorithms were evaluated.
+
+| Model                |   Accuracy | Performance        |
+| -------------------- | ---------: | ------------------ |
+| Logistic Regression  |     77.48% | Baseline Model     |
+| Decision Tree        |     88.41% | Strong Performance |
+| 🌲 **Random Forest** | **92.35%** | 🏆 **Best Model**  |
+
+> Random Forest achieved the highest accuracy among the evaluated models.
+
+---
+
+<!-- ========================================= -->
+
+<!--                  BEST MODEL                -->
+
+<!-- ========================================= -->
+
+## 🏆 Best Performing Model
+
+<p align="center">
+
+### 🌲 RANDOM FOREST
+
+**92.35% Accuracy**
+
+</p>
+
+Random Forest demonstrated the strongest performance after model evaluation and hyperparameter tuning.
+
+```text
+Customer Information
+        │
+        ▼
+   Random Forest
+        │
+        ▼
+Probability of Subscription
+        │
+   ┌────┴────┐
+   ▼         ▼
+ YES         NO
+Subscribe   Not Subscribe
+```
+
+---
+
+<!-- ========================================= -->
+
+<!--              FEATURE IMPORTANCE            -->
+
+<!-- ========================================= -->
+
+## 🔑 Important Predictive Features
+
+Several features showed a strong influence on the prediction:
+
+| Feature       | Description                      |
+| ------------- | -------------------------------- |
+| ⏱️ `duration` | Duration of the last contact     |
+| 📅 `pdays`    | Days since the previous contact  |
+| 📈 `poutcome` | Outcome of the previous campaign |
+| 💰 `balance`  | Customer account balance         |
+| 📞 `contact`  | Contact communication type       |
+
+These variables provide useful signals for estimating the probability of subscription.
+
+---
+
+<!-- ========================================= -->
+
+<!--                 PREDICTION                 -->
+
+<!-- ========================================= -->
+
+## 🔮 Example Prediction
+
+Example customer input:
+
+```json
 {
   "duration": 90,
   "pdays": 3,
@@ -70,34 +314,180 @@ The model is deployed to predict new client data. Example input features:
   "month": "June",
   "contact": "cellular"
 }
+```
 
+The model processes customer information and produces an estimated prediction:
 
-Output → Probability that client will subscribe to a term deposit.
+```text
+Input Customer Data
+        │
+        ▼
+Machine Learning Model
+        │
+        ▼
+Subscription Probability
+        │
+        ▼
+┌───────────────────────┐
+│  YES / NO Prediction  │
+└───────────────────────┘
+```
 
-🛠️ Tech Stack
+---
 
-Python (pandas, numpy, scikit-learn)
+<!-- ========================================= -->
 
-Machine Learning (Logistic Regression, Decision Tree, Random Forest)
+<!--                PROJECT STRUCTURE           -->
 
-Model Evaluation (Accuracy, Precision, Recall, F1-score)
+<!-- ========================================= -->
 
-📌 How to Run
-# Clone repo
+## 📂 Repository Structure
+
+```text
+Predict_Deposit_Bank/
+│
+├── 📓 DS_kel3.ipynb
+├── 📓 Deposit_Bank.ipynb
+├── 📓 Deposit_Bank_Selection_Feature.ipynb
+│
+├── 🐍 Deposit_Bank_ALL_in.py
+├── 🐍 deposit.py
+├── 🐍 training_data.py
+│
+├── 🚀 run_streamlit.py
+├── 🧪 test_streamlit.py
+├── 🧪 test_streamlit_2.py
+│
+├── 📊 bank-full.csv
+├── 📊 bank-full-1.csv
+├── 📊 bank-full_original.csv
+│
+├── 📄 Explanatioin_project_Predict Bank Deposit.pdf
+│
+└── 📖 README.md
+```
+
+---
+
+<!-- ========================================= -->
+
+<!--                 TECH STACK                 -->
+
+<!-- ========================================= -->
+
+## 🛠️ Tech Stack
+
+<p align="center">
+
+<img src="https://skillicons.dev/icons?i=python" height="50"/>
+
+</p>
+
+| Category            | Tools                                             |
+| ------------------- | ------------------------------------------------- |
+| 🐍 Programming      | Python                                            |
+| 📊 Data Processing  | Pandas, NumPy                                     |
+| 🤖 Machine Learning | Scikit-learn                                      |
+| 📈 Models           | Logistic Regression, Decision Tree, Random Forest |
+| 📓 Experimentation  | Jupyter Notebook                                  |
+| 🚀 Application      | Streamlit                                         |
+
+---
+
+<!-- ========================================= -->
+
+<!--                GETTING STARTED             -->
+
+<!-- ========================================= -->
+
+## 🚀 Getting Started
+
+### 1. Clone the Repository
+
+```bash
 git clone https://github.com/arbihidayatullah/Predict_Deposit_Bank.git
+```
+
+```bash
 cd Predict_Deposit_Bank
+```
 
-# Install dependencies
-pip install -r requirements.txt
+### 2. Install Dependencies
 
-# Run Jupyter Notebook or Python scripts
-jupyter notebook
+Install the required Python libraries:
 
-📖 Contribution
+```bash
+pip install pandas numpy scikit-learn streamlit
+```
 
-Contributions are welcome! Feel free to fork this repository, create a branch, and submit a pull request.
+### 3. Run the Project
 
-👨‍💻 Author
+You can explore the Machine Learning workflow through the notebooks:
 
-Arbi Hidayatullah
-Computer Vision & Machine Learning Enthusiast
+```text
+Deposit_Bank.ipynb
+```
+
+or run the Python implementation:
+
+```bash
+python Deposit_Bank_ALL_in.py
+```
+
+For the Streamlit application:
+
+```bash
+streamlit run run_streamlit.py
+```
+
+> Adjust the command if the Streamlit entry point or project dependencies differ from your local environment.
+
+---
+
+<!-- ========================================= -->
+
+<!--                   RESULTS                  -->
+
+<!-- ========================================= -->
+
+## 📈 Key Takeaways
+
+* 📊 The project analyzes **45,211 bank marketing records**.
+* 🤖 Three Machine Learning models were compared.
+* 🌲 **Random Forest achieved the strongest performance** with approximately **92.35% accuracy**.
+* 🎯 Feature selection and preprocessing were applied before model training.
+* 💼 The prediction can support more targeted bank marketing strategies.
+
+---
+
+<!-- ========================================= -->
+
+<!--                   AUTHOR                   -->
+
+<!-- ========================================= -->
+
+## 👨‍💻 Author
+
+**Arbi Hidayatullah**
+
+AI • Machine Learning • Computer Vision • Data
+
+<p>
+  <a href="https://github.com/arbihidayatullah">
+    GitHub
+  </a>
+  &nbsp; • &nbsp;
+  <a href="https://www.linkedin.com/in/arbi-hidayatullah/">
+    LinkedIn
+  </a>
+</p>
+
+---
+
+<p align="center">
+  <strong>Transforming data into meaningful predictions.</strong>
+</p>
+
+<p align="center">
+  ⭐ If you find this project useful, consider giving it a star!
+</p>
